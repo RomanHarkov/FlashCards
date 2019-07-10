@@ -64,7 +64,17 @@ public class Authorization extends JFrame {
                         //считать xml файл
                         User unmarshUsers = jw.fromXmlToObject(fileName);
                         if (unmarshUsers != null) {
-                            System.out.println(unmarshUsers.toString());
+                            if (unmarshUsers.getName().equals(loginField.getText())) {
+
+                                MainWindow mw = new MainWindow();
+                                setVisible(false);
+                            } else {
+
+                                JOptionPane.showMessageDialog(Authorization.this,
+                                        new String[]{"Неверный логин!"},
+                                        TITLE_MESSAGE,
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
 
                         }
 
@@ -76,9 +86,6 @@ public class Authorization extends JFrame {
                         jw.convertObjectToXml(user, fileName);
                     }
 
-
-                    MainWindow mw = new MainWindow();
-                    setVisible(false);
                 } else {
 
                     JOptionPane.showMessageDialog(Authorization.this,
