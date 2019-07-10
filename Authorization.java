@@ -18,6 +18,7 @@ public class Authorization extends JFrame {
     //private JLabel loginLabel = new JLabel();
 
     JTextField loginField;
+    JTextField loginField2;
     private final String TITLE_MESSAGE = "Окно сообщения";
 
     public Authorization() {
@@ -32,6 +33,12 @@ public class Authorization extends JFrame {
         box1.add(loginLabel);
         box1.add(Box.createHorizontalStrut(6));
         box1.add(loginField);
+
+        JLabel loginLabe2 = new JLabel("Пароль:");
+        loginField2 = new JTextField(15);
+        box1.add(loginLabe2);
+        box1.add(Box.createHorizontalStrut(6));
+        box1.add(loginField2);
 
         Box box2 = Box.createHorizontalBox();
         box2.add(Box.createHorizontalGlue());
@@ -64,14 +71,14 @@ public class Authorization extends JFrame {
                         //считать xml файл
                         User unmarshUsers = jw.fromXmlToObject(fileName);
                         if (unmarshUsers != null) {
-                            if (unmarshUsers.getName().equals(loginField.getText())) {
+                            if (unmarshUsers.getName().equals(loginField.getText()) & unmarshUsers.getPassword().equals(loginField2.getText())) {
 
                                 MainWindow mw = new MainWindow();
                                 setVisible(false);
                             } else {
 
                                 JOptionPane.showMessageDialog(Authorization.this,
-                                        new String[]{"Неверный логин!"},
+                                        new String[]{"Неверные логин или пароль!"},
                                         TITLE_MESSAGE,
                                         JOptionPane.ERROR_MESSAGE);
                             }
@@ -82,8 +89,12 @@ public class Authorization extends JFrame {
 
                         User user = new User();
                         user.setName(loginField.getText());
+                        user.setPassword(loginField2.getText());
 
                         jw.convertObjectToXml(user, fileName);
+
+                        MainWindow mw = new MainWindow();
+                        setVisible(false);
                     }
 
                 } else {
