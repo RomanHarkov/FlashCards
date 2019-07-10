@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 
 /**
@@ -52,9 +53,31 @@ public class Authorization extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                JaxbWorker jw = new JaxbWorker();
+                String fileName = "C:/FlashCards/Users.xml";
+
                 if (loginField.getText().length() > 0) {
 
-                    MainWindow war = new MainWindow();
+                    File fn = new File(fileName);
+                    if (fn.exists()) {
+
+                        //считать xml файл
+                        User unmarshUsers = jw.fromXmlToObject(fileName);
+                        if (unmarshUsers != null) {
+                            System.out.println(unmarshUsers.toString());
+
+                        }
+                        
+                    } else {
+
+                        User user = new User();
+                        user.setName(loginField.getText());
+
+                        jw.convertObjectToXml(user, fileName);
+                    }
+
+
+                    MainWindow mw = new MainWindow();
                     setVisible(false);
                 } else {
 
