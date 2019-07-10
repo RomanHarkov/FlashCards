@@ -2,16 +2,10 @@
  * Created by –оман on 09.07.2019.
  */
 
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
-// определ€ем корневой элемент
-@XmlRootElement(name = "User")
-
-// определ€ем последовательность тегов в XML
-@XmlType(propOrder = {"name", "password"})
-
+@XmlRootElement
 public class User {
 
     private String name;
@@ -21,14 +15,7 @@ public class User {
 
     }
 
-    public User(String name, String password) {
-
-        this.name = name;
-        this.password = password;
-
-    }
-
-    @XmlAttribute
+    @XmlElement
     public String getName() {
         return name;
     }
@@ -37,7 +24,7 @@ public class User {
         this.name = name;
     }
 
-    @XmlAttribute
+    @XmlElement
     public String getPassword() {
         return password;
     }

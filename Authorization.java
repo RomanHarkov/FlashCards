@@ -53,10 +53,10 @@ public class Authorization extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                JaxbWorker jw = new JaxbWorker();
-                String fileName = "C:/FlashCards/Users.xml";
-
                 if (loginField.getText().length() > 0) {
+
+                    JaxbWorker jw = new JaxbWorker();
+                    String fileName = "C:/FlashCards/Users.xml";
 
                     File fn = new File(fileName);
                     if (fn.exists()) {
@@ -67,7 +67,7 @@ public class Authorization extends JFrame {
                             System.out.println(unmarshUsers.toString());
 
                         }
-                        
+
                     } else {
 
                         User user = new User();
