@@ -5,15 +5,15 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 /**
- * Created by Роман on 10.07.2019.
+ * Created by Р РѕРјР°РЅ on 10.07.2019.
  */
 
 public class JaxbWorker {
 
-    // восстанавливаем объект из XML файла
+    // РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј РѕР±СЉРµРєС‚ РёР· XML С„Р°Р№Р»Р°
     public static Users fromXmlToObject(String filePath) {
         try {
-            // создаем объект JAXBContext - точку входа для JAXB
+            // СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ JAXBContext - С‚РѕС‡РєСѓ РІС…РѕРґР° РґР»СЏ JAXB
             JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
             Unmarshaller un = jaxbContext.createUnmarshaller();
 
@@ -24,15 +24,15 @@ public class JaxbWorker {
         return null;
     }
 
-    // сохраняем объект в XML файл
+    // СЃРѕС…СЂР°РЅСЏРµРј РѕР±СЉРµРєС‚ РІ XML С„Р°Р№Р»
     public static void convertObjectToXml(Users users, String filePath) {
         try {
             JAXBContext context = JAXBContext.newInstance(Users.class);
             Marshaller marshaller = context.createMarshaller();
-            // устанавливаем флаг для читабельного вывода XML в JAXB
+            // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј С„Р»Р°Рі РґР»СЏ С‡РёС‚Р°Р±РµР»СЊРЅРѕРіРѕ РІС‹РІРѕРґР° XML РІ JAXB
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-            // маршаллинг объекта в файл
+            // РјР°СЂС€Р°Р»Р»РёРЅРі РѕР±СЉРµРєС‚Р° РІ С„Р°Р№Р»
             marshaller.marshal(users, new File(filePath));
         } catch (JAXBException e) {
             e.printStackTrace();
