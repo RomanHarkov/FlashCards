@@ -11,13 +11,13 @@ import java.io.File;
 public class JaxbWorker {
 
     // восстанавливаем объект из XML файла
-    public static User fromXmlToObject(String filePath) {
+    public static Users fromXmlToObject(String filePath) {
         try {
             // создаем объект JAXBContext - точку входа для JAXB
-            JAXBContext jaxbContext = JAXBContext.newInstance(User.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
             Unmarshaller un = jaxbContext.createUnmarshaller();
 
-            return (User) un.unmarshal(new File(filePath));
+            return (Users) un.unmarshal(new File(filePath));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -25,15 +25,15 @@ public class JaxbWorker {
     }
 
     // сохраняем объект в XML файл
-    public static void convertObjectToXml(User user, String filePath) {
+    public static void convertObjectToXml(Users users, String filePath) {
         try {
-            JAXBContext context = JAXBContext.newInstance(User.class);
+            JAXBContext context = JAXBContext.newInstance(Users.class);
             Marshaller marshaller = context.createMarshaller();
             // устанавливаем флаг для читабельного вывода XML в JAXB
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
             // маршаллинг объекта в файл
-            marshaller.marshal(user, new File(filePath));
+            marshaller.marshal(users, new File(filePath));
         } catch (JAXBException e) {
             e.printStackTrace();
         }

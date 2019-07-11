@@ -69,9 +69,10 @@ public class Authorization extends JFrame {
                     if (fn.exists()) {
 
                         //считать xml файл
-                        User unmarshUsers = jw.fromXmlToObject(fileName);
-                        if (unmarshUsers != null) {
-                            if (unmarshUsers.getName().equals(loginField.getText()) & unmarshUsers.getPassword().equals(loginField2.getText())) {
+                        Users unmarshUsers = jw.fromXmlToObject(fileName);
+                        for (User user : unmarshUsers.getUsers()) {
+
+                            if (user.getName().equals(loginField.getText()) & user.getPassword().equals(loginField2.getText())) {
 
                                 MainWindow mw = new MainWindow();
                                 setVisible(false);
@@ -82,19 +83,18 @@ public class Authorization extends JFrame {
                                         TITLE_MESSAGE,
                                         JOptionPane.ERROR_MESSAGE);
                             }
-
                         }
 
                     } else {
 
-                        User user = new User();
-                        user.setName(loginField.getText());
-                        user.setPassword(loginField2.getText());
+                        //User user = new User();
+                        // user.setName(loginField.getText());
+                        // user.setPassword(loginField2.getText());
 
-                        jw.convertObjectToXml(user, fileName);
+                        //  jw.convertObjectToXml(users, fileName);
 
-                        MainWindow mw = new MainWindow();
-                        setVisible(false);
+                        //   MainWindow mw = new MainWindow();
+                        //   setVisible(false);
                     }
 
                 } else {
