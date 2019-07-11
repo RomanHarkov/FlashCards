@@ -26,6 +26,15 @@ public class Open {
             user.setName("Admin");
             user.setPassword("Admin");
 
+            ArrayList<String> l_s = new ArrayList<String>();
+            l_s.add("en");
+            l_s.add("de");
+            l_s.add("it");
+            l_s.add("fi");
+            l_s.add("fr");
+
+            user.setLanguages_studied(l_s);
+
             users.getUsers().add(user);
 
             jw.convertObjectToXml(users, fileName);
